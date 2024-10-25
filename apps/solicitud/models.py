@@ -3,8 +3,8 @@ from apps.usuarios.models import Usuarios
 from apps.domiciliarios.models import Domiciliarios  
 
 class Solicitud(models.Model):
-    usuarios = models.ForeignKey(Usuarios, null=True, on_delete=models.SET_NULL)
-    domiciliarios = models.ForeignKey(Domiciliarios, null=True, on_delete=models.SET_NULL)
+    usuarios = models.ForeignKey(Usuarios, on_delete=models.SET_NULL, null=True,  blank=True)
+    domiciliarios = models.ForeignKey(Domiciliarios, on_delete=models.SET_NULL, null=True,  blank=True)
     direccion_recogida = models.CharField(max_length=200)
     direccion_entrega = models.CharField(max_length=200)
     estado = models.CharField(max_length=45)

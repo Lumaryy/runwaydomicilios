@@ -1,5 +1,5 @@
 from rest_framework import viewsets, permissions
-from apps.negocios.api.serializer import NovedadesSerializer
+from apps.novedades.api.serializer import NovedadesSerializer
 from apps.novedades.models import Novedades
 
 class NovedadesViewSet(viewsets.ModelViewSet):

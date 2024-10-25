@@ -3,8 +3,8 @@ from apps.domiciliarios.models import Domiciliarios
 from apps.solicitud.models import Solicitud 
 
 class Novedades(models.Model):
-    domiciliarios = models.ForeignKey(Domiciliarios, null=True, on_delete=models.SET_NULL)
-    solicitud = models.ForeignKey(Solicitud, null=True, on_delete=models.SET_NULL)
+    domiciliarios = models.ForeignKey(Domiciliarios, on_delete=models.SET_NULL , null=True,  blank=True)
+    solicitud = models.ForeignKey(Solicitud,  on_delete=models.SET_NULL, null=True,  blank=True)
     descripcion = models.TextField()
     
     class EstadoChoices(models.TextChoices):

@@ -1,8 +1,8 @@
 from rest_framework import serializers
-from ..models import ReportesIncidencias
+from apps.reportesIncidencia.models import ReportesIncidencia
 
 class ReporteIncidenciasSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ReportesIncidencias
+        model = ReportesIncidencia
         fields = ['id', 'descripcion', 'fecha_reporte', 'usuario', 'solicitud', 'estado']
 
