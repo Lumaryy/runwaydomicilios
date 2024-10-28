@@ -170,3 +170,7 @@ SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': datetime.timedelta(minutes=60),  
     'REFRESH_TOKEN_LIFETIME': datetime.timedelta(days=7),  
 }
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:5173",
+]
