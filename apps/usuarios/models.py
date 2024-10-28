@@ -16,8 +16,7 @@ class Usuarios(AbstractUser):
     nombre = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     telefono = models.CharField(max_length=20)
-    contrasenia = models.CharField(max_length=255)
-    
+
     class EstadoChoices(models.TextChoices):
         ACTIVO = 'activo', 'Activo'
         INACTIVO = 'inactivo', 'Inactivo'

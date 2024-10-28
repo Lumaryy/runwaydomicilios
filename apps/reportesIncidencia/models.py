@@ -3,8 +3,8 @@ from apps.usuarios.models import Usuarios
 from apps.solicitud.models import Solicitud  
 
 class ReportesIncidencia(models.Model):
-    usuarios = models.ForeignKey(Usuarios,  on_delete=models.SET_NULL, null=True,  blank=True)
-    solicitud = models.ForeignKey(Solicitud,  on_delete=models.SET_NULL, null=True,  blank=True)
+    usuarios = models.ForeignKey(Usuarios, on_delete=models.SET_NULL, null=True, blank=True)
+    solicitud = models.ForeignKey(Solicitud, on_delete=models.SET_NULL, null=True, blank=True)
     
     class TipoIncidenciaChoices(models.TextChoices):
         TECNICA = 'tecnica', 'Técnica'

@@ -1,8 +1,12 @@
 from rest_framework import serializers
-from ..models import Domiciliarios
+from apps.domiciliarios.models import Domiciliarios
 
 class DomiciliariosSerializer(serializers.ModelSerializer):
+    nombre_usuario = serializers.CharField(source='usuarios.nombre', read_only=True)
+
     class Meta:
         model = Domiciliarios
-        fields = ['id', 'nombre', 'apellidos', 'estado_disponibilidad', 'telefono', 'correo_electronico', 'documento_identidad', 'estado']
+        fields = ['id', 'usuarios', 'licencia_vehiculo', 'disponibilidad', 'nombre_usuario']  
 
+    def __str__(self):
+        return f"Domiciliario: {self.nombre_usuario} ({self.licencia_vehiculo})"

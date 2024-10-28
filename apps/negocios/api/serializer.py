@@ -1,8 +1,9 @@
 from rest_framework import serializers
-from ..models import Negocios
+from apps.negocios.models import Negocios
 
 class NegociosSerializer(serializers.ModelSerializer):
     class Meta:
         model = Negocios
-        fields = ['id', 'nombre', 'direccion', 'telefono', 'correo_electronico', 'estado', 'tipo_negocio', 'documento_identidad']
-
+        fields = ['id', 'usuarios', 'nombre', 'banner', 'direccion']  
+    def __str__(self):
+        return self.nombre

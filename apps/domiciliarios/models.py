@@ -2,7 +2,7 @@ from django.db import models
 from apps.usuarios.models import Usuarios  
 
 class Domiciliarios(models.Model):
-    usuarios = models.ForeignKey(Usuarios, on_delete=models.SET_NULL,  null=True,  blank=True)
+    usuarios = models.ForeignKey(Usuarios, on_delete=models.SET_NULL, null=True, blank=True)
     licencia_vehiculo = models.CharField(max_length=50)
     
     class DisponibilidadChoices(models.TextChoices):

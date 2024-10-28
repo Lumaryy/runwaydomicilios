@@ -3,21 +3,20 @@ from django.contrib.auth.hashers import make_password
 from apps.usuarios.models import Usuarios
 
 class UsuariosSerializer(serializers.ModelSerializer):
+    contrasena = serializers.CharField(write_only=True)  
+
     class Meta:
         model = Usuarios
-        fields = ['id', 'nombre', 'apellidos', 'correo_electronico', 'telefono', 'tipo_documento', 'numero_documento', 'estado', 'rol', 'contrasena']
-        extra_kwargs = {
-            'contrasena': {'write_only': True}, 
-        }
-
+        fields = ['id', 'username', 'nombre', 'email', 'telefono', 'tipo_usuario', 'estado', 'contrasena']  
     def create(self, validated_data):
-        # Cifra la contraseña antes de guardar el usuario
-        validated_data['contrasena'] = make_password(validated_data['contrasena'])
-        return super(UsuariosSerializer, self).create(validated_data)
+        contrasena = validated_data.pop('contrasena', None)
+        if contrasena:
+            validated_data['password'] = make_password(contrasena)
+        user = super().create(validated_data)
+        return user
 
-   
     def update(self, instance, validated_data):
         contrasena = validated_data.pop('contrasena', None)
         if contrasena:
-            instance.contrasena = make_password(contrasena)
-        return super(UsuariosSerializer, self).update(instance, validated_data)
+            instance.password = make_password(contrasena)
+        return super().update(instance, validated_data)
