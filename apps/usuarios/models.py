@@ -17,6 +17,7 @@ class Usuarios(AbstractUser):
     nombre = models.CharField(max_length=100)
     email = models.EmailField(max_length=100, unique=True)
     telefono = models.CharField(max_length=20)
+    username = models.CharField(max_length=150, null=True, blank=True)      
 
     class EstadoChoices(models.TextChoices):
         ACTIVO = 'activo', 'Activo'
@@ -27,10 +28,12 @@ class Usuarios(AbstractUser):
         choices=EstadoChoices.choices,
         default=EstadoChoices.ACTIVO,
     )
+
+    
     
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
+    REQUIRED_FIELDS = [ 'first_name', 'last_name']
 
     def __str__(self):
         return f"{self.nombre} ({self.tipo_usuario}) - {self.email}"
