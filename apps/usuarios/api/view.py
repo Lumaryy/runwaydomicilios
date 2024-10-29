@@ -5,6 +5,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate
+from django.shortcuts import get_object_or_404
 
 # Vista para manejar los usuarios
 class UsuariosViewSet(viewsets.ModelViewSet):
@@ -33,10 +34,22 @@ class PasswordResetView(APIView):
         # Lógica para generar el link de recuperación de contraseña
         return Response({"message": "Password reset link sent"}, status=status.HTTP_200_OK)
 
-
+# Vista para obtener datos del usuario autenticado
 class UserApiGet(APIView):
     permission_classes = [permissions.IsAuthenticated]
+    
     def get(self, request):
         serializer = UsuariosSerializer(request.user)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+# Vista para alternar el estado activo/inactivo del usuario
+class ToggleUserStatusView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+
+    def post(self, request, user_id):
+        user = get_object_or_404(Usuarios, id=user_id)
+        user.estado = not user.estado  
+        user.save()
+        
+        status_message = "User activated" if user.estado else "User deactivated"
+        return Response({"message": status_message, "new_status": user.estado}, status=status.HTTP_200_OK)
