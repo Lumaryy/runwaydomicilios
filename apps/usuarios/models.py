@@ -30,7 +30,7 @@ class Usuarios(AbstractUser):
     
     USERNAME_FIELD = 'email'
     EMAIL_FIELD = 'email'
-    REQUIRED_FIELDS = ['first_name', 'last_name']
+    REQUIRED_FIELDS = ['username', 'first_name', 'last_name']
 
     def __str__(self):
         return f"{self.nombre} ({self.tipo_usuario}) - {self.email}"
