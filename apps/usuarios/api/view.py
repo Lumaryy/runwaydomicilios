@@ -6,14 +6,16 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.contrib.auth import authenticate
 
+# Vista para manejar los usuarios
 class UsuariosViewSet(viewsets.ModelViewSet):
     queryset = Usuarios.objects.all()
     serializer_class = UsuariosSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]  # Permitir acceso sin autenticación para registro
 
     def perform_create(self, serializer):
         serializer.save()
 
+# Vista para manejar el inicio de sesión
 class LoginView(APIView):
     def post(self, request):
         username = request.data.get('username')
@@ -24,6 +26,7 @@ class LoginView(APIView):
             return Response({"message": "Login successful"}, status=status.HTTP_200_OK)
         return Response({"error": "Invalid credentials"}, status=status.HTTP_400_BAD_REQUEST)
 
+# Vista para manejar la solicitud de restablecimiento de contraseña
 class PasswordResetView(APIView):
     def post(self, request):
         email = request.data.get('email')
