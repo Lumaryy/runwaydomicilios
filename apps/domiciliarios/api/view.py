@@ -5,7 +5,7 @@ from apps.domiciliarios.api.serializer import DomiciliariosSerializer
 class DomiciliariosViewSet(viewsets.ModelViewSet):
     queryset = Domiciliarios.objects.all()
     serializer_class = DomiciliariosSerializer
-    permission_classes = [permissions.IsAuthenticated]
+
 
     def perform_create(self, serializer):
         serializer.save()

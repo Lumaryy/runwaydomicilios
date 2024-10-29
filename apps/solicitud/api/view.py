@@ -6,7 +6,7 @@ from apps.domiciliarios.models import Domiciliarios
 class SolicitudViewSet(viewsets.ModelViewSet):
     queryset = Solicitud.objects.all()
     serializer_class = SolicitudSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
 
     def perform_create(self, serializer):
         solicitud = serializer.save()

@@ -4,12 +4,12 @@ from apps.domiciliarios.models import Domiciliarios
 
 class Solicitud(models.Model):
     class Estado(models.TextChoices):
-        PENDIENTE = 'PENDIENTE', 'Pendiente'
-        ASIGNADO = 'ASIGNADO', 'Asignado'
-        EN_CURSO = 'EN CURSO', 'En curso'
-        COMPLETADO = 'COMPLETADO', 'Completado'
-        REPROGRAMADO = 'REPROGRAMADO', 'Reprogramado'
-        CANCELADO = 'CANCELADO', 'Cancelado'
+        PENDIENTE = 'PENDIENTE', 'PENDIENTE'
+        ASIGNADO = 'ASIGNADO', 'ASIGNADO'
+        EN_CURSO = 'EN CURSO', 'EN CURSO'
+        COMPLETADO = 'COMPLETADO', 'COMPLETADO'
+        REPROGRAMADO = 'REPROGRAMADO', 'REPROGRAMADO'
+        CANCELADO = 'CANCELADO', 'CANCELADO'
     
     usuarios = models.ForeignKey(Usuarios, on_delete=models.SET_NULL, null=True, blank=True)
     domiciliarios = models.ForeignKey(Domiciliarios, on_delete=models.SET_NULL, null=True, blank=True)
