@@ -8,8 +8,8 @@ class UsuariosAdmin(admin.ModelAdmin):
         (None, {
             'fields': ('nombre', 'email', 'telefono', 'tipo_usuario', 'estado')
         }),
-        ('Contraseña', {
-            'fields': ('contrasenia',)  # Considera seguridad para el manejo de contraseñas
+        ('password', {
+            'fields': ('password',)  # Considera seguridad para el manejo de contraseñas
         }),
     )
 
