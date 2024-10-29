@@ -8,9 +8,7 @@ class SolicitudViewSet(viewsets.ModelViewSet):
     serializer_class = SolicitudSerializer
     permission_classes = [permissions.AllowAny]
 
-    def perform_create(self, serializer):
-        solicitud = serializer.save()
-        self.asignar_domiciliario(solicitud)
+
 
     def asignar_domiciliario(self, solicitud):
         domiciliario = Domiciliarios.objects.filter(estado='disponible').first()

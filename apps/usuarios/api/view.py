@@ -32,3 +32,11 @@ class PasswordResetView(APIView):
         email = request.data.get('email')
         # Lógica para generar el link de recuperación de contraseña
         return Response({"message": "Password reset link sent"}, status=status.HTTP_200_OK)
+
+
+class UserApiGet(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request):
+        serializer = UsuariosSerializer(request.user)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
