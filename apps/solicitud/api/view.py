@@ -16,10 +16,7 @@ class SolicitudViewSet(viewsets.ModelViewSet):
             solicitud.domiciliario = domiciliario
             solicitud.save()
 
-    def perform_update(self, serializer):
-        solicitud = serializer.save()
-        if solicitud.novedad_reportada:
-            self.reasignar_domiciliario(solicitud)
+
 
     def reasignar_domiciliario(self, solicitud):
         nuevo_domiciliario = Domiciliarios.objects.filter(estado='disponible').exclude(id=solicitud.domiciliario.id).first()

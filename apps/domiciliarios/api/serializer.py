@@ -1,7 +1,10 @@
 from rest_framework import serializers
 from apps.domiciliarios.models import Domiciliarios
+from apps.usuarios.api.serializer import UsuariosSerializer
 
 class DomiciliariosSerializer(serializers.ModelSerializer):
+
+    usuarios = UsuariosSerializer(read_only=True)
 
     class Meta:
         model = Domiciliarios
